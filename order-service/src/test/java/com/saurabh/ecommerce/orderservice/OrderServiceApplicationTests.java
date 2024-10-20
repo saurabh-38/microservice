@@ -1,4 +1,4 @@
-package com.saurabh.ecommerce.order_service;
+package com.saurabh.ecommerce.orderservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
