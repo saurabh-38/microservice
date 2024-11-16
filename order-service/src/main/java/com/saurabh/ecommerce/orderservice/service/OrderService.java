@@ -5,6 +5,7 @@ import com.saurabh.ecommerce.orderservice.dto.OrderRequest;
 import com.saurabh.ecommerce.orderservice.model.Order;
 import com.saurabh.ecommerce.orderservice.model.OrderLineItem;
 import com.saurabh.ecommerce.orderservice.repository.OrderRepository;
+import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 
 @Service
+@Transactional
 public class OrderService {
     public final OrderRepository orderRepository;
 
