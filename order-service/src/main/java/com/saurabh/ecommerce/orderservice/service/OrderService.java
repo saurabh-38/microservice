@@ -25,7 +25,7 @@ import java.util.UUID;
 public class OrderService {
     private static final Logger log = LoggerFactory.getLogger(OrderService.class);
     public final OrderRepository orderRepository;
-    public final WebClient webClient;
+    public final WebClient.Builder webClient;
 
     public void placeOrder(OrderRequest orderRequest) throws IllegalAccessException {
         Order order = new Order();
@@ -45,13 +45,12 @@ public class OrderService {
             }else {
                     log.info("Size is "+skuCodes.size());
             }
-        InventoryResponse[] inventoryResponsArray = webClient.get()
-                .uri("http://localhost:8081/api/inventory",
+        InventoryResponse[] inventoryResponsArray = webClient.build().get()
+                .uri("http://inventory-service/api/inventory",
                         uriBuilder -> uriBuilder.queryParam("skuCode", skuCodes).build())
                 .retrieve()
                 .bodyToMono(InventoryResponse[].class)
                 .block();
-
         System.out.println("inventoryResponseArray "+inventoryResponsArray.toString());
 
           boolean allProductInStock = Arrays.stream(inventoryResponsArray).allMatch(InventoryResponse::isInStock);
