@@ -15,10 +15,12 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/api/product")
 public class TestController {
     private final TestService testService;
 
-    @GetMapping("/products")
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<List<Product>> getProducts() throws UserNotFoundException {
         // return ResponseEntity.of(Optional.of(testService.fetchProducts()));
         return testService.fetchProducts();
@@ -31,7 +33,7 @@ public class TestController {
         return this.testService.getProductByID(id);
     }
 
-    @PostMapping("/products")
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public void postProducts(@RequestBody ProductRequest req) {
         System.out.println("saurabh" + req);
