@@ -15,14 +15,14 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/product")
 public class TestController {
     private final TestService testService;
 
-    @GetMapping
+    @GetMapping("/api/product")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<List<Product>> getProducts() throws UserNotFoundException {
         // return ResponseEntity.of(Optional.of(testService.fetchProducts()));
+        System.out.println("Get Request");
         return testService.fetchProducts();
     }
 
