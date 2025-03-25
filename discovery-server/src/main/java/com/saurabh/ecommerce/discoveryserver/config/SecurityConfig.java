@@ -29,7 +29,9 @@ public class SecurityConfig {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auths -> auths
-                        .requestMatchers("/eureka/**").permitAll() // Allow Eureka requests
+                        .requestMatchers("/eureka/**").permitAll()
+                        .requestMatchers("/api/v2/spans").permitAll()
+                        // Allow Eureka requests
                         .anyRequest().authenticated()
                 )
                 .httpBasic(withDefaults());
